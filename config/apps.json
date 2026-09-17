@@ -50,7 +50,7 @@
     ],
     "github": []
   },
-  "dev": {
+  "developer": {
     "winget": [
       {
         "name": "C++ 2015-2022 x64",

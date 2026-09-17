@@ -45,7 +45,16 @@ foreach ($json in $json_paths) {
     }
 }
 
-# Banner ASCII si todo está correcto
+$script:data = Get-AppJson -Path ($script:app = $json_paths[0])
+$script:env = Get-EnvJson -Path ($env = $json_paths[1])
+
+# $script:data.GetType()
+
+
+<#
+    .SYNOPSIS
+    DESDE ESTA PARTE DEL CODIGO COMIENZA EL CLI
+#>
 if ($fine) {
 Write-Host @"
 
@@ -65,15 +74,72 @@ RR:::::R     R:::::R   GG::::::::::::G E::::::::::::::::::::ED:::::::::::::::DD 
 R::::::R     R::::::R    GGGGGGGGGGGGG EEEEEEEEEEEEEEEEEEEEEEDDDDDDDDDDDDDDD      CCCCCCCCCCCCCCC         TTTTTTTTTTT      
 
 ---RgeditV1---
-"@
-}
 
+---V$script:version---
+"@ -ForegroundColor Green
 
-$script:data = Get-AppJson -Path ($script:app = $json_paths[0])
-$script:env = Get-EnvJson -Path ($env = $json_paths[1])
+Start-Sleep -Seconds 2
+Clear-Host
 
-foreach ($item in $script:data){
-    foreach ($names in $item.standard.winget.name){
-        Write-Host $names
+function Select-Menu {
+        param (
+            [string[]]$Options,
+            [string]$Title = "Selecciona tu Preset"
+        )
+
+        $selectedIndex = 0
+        [Console]::CursorVisible = $false
+
+        try {
+            while ($true) {
+                Clear-Host
+
+                Write-Host "---------------------------------------" -ForegroundColor DarkCyan
+                Write-Host " $Title" -ForegroundColor Cyan
+                Write-Host "---------------------------------------" -ForegroundColor DarkCyan
+
+                for ($i = 0; $i -lt $Options.Count; $i++) {
+                    if ($i -eq $selectedIndex) {
+                        Write-Host " > [$($i + 1)] $($Options[$i]) " -ForegroundColor Black -BackgroundColor Cyan
+                    } else {
+                        Write-Host "   [$($i + 1)] $($Options[$i]) " -ForegroundColor Gray
+                    }
+                }
+
+                Write-Host "---------------------------------------" -ForegroundColor DarkCyan
+                Write-Host "(Usa Flechas Arriba/Abajo y Enter)" -ForegroundColor DarkGray
+
+                $key = [Console]::ReadKey($true)
+
+                switch ($key.Key) {
+                    'UpArrow' {
+                        $selectedIndex = ($selectedIndex - 1 + $Options.Count) % $Options.Count
+                    }
+                    'DownArrow' {
+                        $selectedIndex = ($selectedIndex + 1) % $Options.Count
+                    }
+                    'Enter' {
+                        return $Options[$selectedIndex]
+                    }
+                }
+            }
+        }
+        finally {
+            Clear-Host
+            [Console]::CursorVisible = $true
+        }
+    }
+
+    $selection = @("developer", "standard", "gaming")
+
+    $presetSelected = Select-Menu -Options $selection -Title "Selecciona tu Preset"
+
+    if ($presetSelected) {
+        try {
+            Set-Preset -Preset $presetSelected -Json $script:data
+        }
+        catch {
+            Write-Error "No se encuentra el preset seleccionado" -RecommendedAction "standard, developer, gaming"
+        }
     }
 }
