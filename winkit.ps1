@@ -3,7 +3,6 @@ $script:version = 2026.09
 # Variables
 $script:data = $null
 $script:app  = $null
-$script:env  = $null
 
 # Rutas
 $script:root    = $PSScriptRoot
@@ -14,12 +13,10 @@ $script:scripts = Join-Path $script:root -ChildPath "scripts"
 $script_paths = @(
     Join-Path $script:scripts -ChildPath "presets.ps1"
     Join-Path $script:scripts -ChildPath "install.ps1"
-    Join-Path $script:scripts -ChildPath "set-env.ps1"
 )
 
 $json_paths = @(
     Join-Path $script:config -ChildPath "apps.json"
-    Join-Path $script:config -ChildPath "env.json"
 )
 
 $fine = $true
@@ -46,7 +43,6 @@ foreach ($json in $json_paths) {
 }
 
 $script:data = Get-AppJson -Path ($script:app = $json_paths[0])
-$script:env = Get-EnvJson -Path ($env = $json_paths[1])
 
 # $script:data.GetType()
 
