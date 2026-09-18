@@ -3,25 +3,18 @@
     "winget": [
       {
         "name": "7-Zip",
-        "install": "winget install -e --id 7zip.7zip",
+        "id": "7zip.7zip",
         "description": "7-Zip is a free and open-source file archiver with a high compression ratio."
       },
       {
         "name": "Brave Browser",
-        "install": "winget install -e --id Brave.Brave",
+        "id": "Brave.Brave",
         "description": "Brave is a privacy-focused web browser that blocks trackers and ads by default."
       },
       {
         "name": "VLC Media Player",
-        "install": "winget install -e --id VideoLAN.VLC",
+        "id": "VideoLAN.VLC",
         "description": "VLC is a free and open-source cross-platform multimedia player for most video/audio formats."
-      }
-    ],
-    "github": [
-      {
-        "name": "Office Pro Plus 2024 LTSC",
-        "url": "https://github.com/RgeditV1/Office-Pro-Plus-2024-LTSC/releases/download/v1/office.zip",
-        "description": "Microsoft Office Suite v2024 LTSC"
       }
     ]
   },
@@ -29,65 +22,77 @@
     "winget": [
       {
         "name": "Steam",
-        "install": "winget install -e --id Valve.Steam",
+        "id": "Valve.Steam",
         "description": "Steam is a digital distribution platform developed by Valve Corporation for purchasing and playing video games."
       },
       {
         "name": "Discord",
-        "install": "winget install -e --id Discord.Discord",
+        "id": "Discord.Discord",
         "description": "Discord is a voice, video, and text communication platform popular among gamers and communities."
       },
       {
         "name": "C++ 2015-2022 x64",
-        "install": "winget install --id Microsoft.VCRedist.2015+.x64",
+        "id": "Microsoft.VCRedist.2015+.x64",
         "description": "Microsoft Visual C++ Redistributable 2015-2022 x64 package required by many modern games."
       },
       {
         "name": "C++ 2015-2022 x86",
-        "install": "winget install --id Microsoft.VCRedist.2015+.x86",
+        "id": "Microsoft.VCRedist.2015+.x86",
         "description": "Microsoft Visual C++ Redistributable 2015-2022 x86 package required by 32-bit games and engines."
       }
-    ],
-    "github": []
+    ]
   },
   "developer": {
     "winget": [
       {
         "name": "C++ 2015-2022 x64",
-        "install": "winget install --id Microsoft.VCRedist.2015+.x64",
+        "id": "Microsoft.VCRedist.2015+.x64",
         "description": "Microsoft Visual C++ Redistributable 2015-2022 x64 package required by many modern games."
       },
       {
         "name": "C++ 2015-2022 x86",
-        "install": "winget install --id Microsoft.VCRedist.2015+.x86",
+        "id": "Microsoft.VCRedist.2015+.x86",
         "description": "Microsoft Visual C++ Redistributable 2015-2022 x86 package required by 32-bit games and engines."
       },
       {
         "name": "Git",
-        "install": "winget install -e --id Git.Git",
+        "id": "Git.Git",
+        "path": "C:\\Program Files\\Git\\cmd",
         "description": "Git is a distributed version control system for tracking changes in source code during software development."
       },
       {
         "name": "CMake",
-        "install": "winget install -e --id Kitware.CMake",
+        "id": "Kitware.CMake",
+        "path": "C:\\Program Files\\CMake\\bin",
         "description": "CMake is an open-source, cross-platform family of tools designed to build, test and package software."
       },
       {
+        "name": "MSYS2",
+        "id": "MSYS2.MSYS2",
+        "path": "C:\\msys64\\ucrt64\\bin",
+        "description": "MSYS2 is a collection of tools and libraries providing you with an easy-to-use environment for building, iding and running native Windows software."
+      },
+      {
         "name": "Python 3.12",
-        "install": "winget install --id Python.Python.3.12 -e --override '/passive PrependPath=1'",
+        "id": "Python.Python.3.12",
+        "path": "C:\\Python312\\Scripts",
         "description": "Python is a programming language that lets you work more quickly and integrate your systems more effectively."
       },
       {
-        "name": "MSYS2",
-        "install": "winget install -e --id MSYS2.MSYS2",
-        "description": "MSYS2 is a collection of tools and libraries providing you with an easy-to-use environment for building, installing and running native Windows software."
-      },
-      {
         "name": "Visual Studio Code",
-        "install": "winget install -e --id Microsoft.VisualStudioCode",
+        "id": "Microsoft.VisualStudioCode",
         "description": "Microsoft Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications."
       }
-    ],
-    "github": []
+    ]
+  },
+  "extras": {
+    "github": [
+      {
+        "name": "Office Pro Plus 2024 LTSC",
+        "installer": "instalar.bat",
+        "url": "https://github.com/RgeditV1/Office-Pro-Plus-2024-LTSC/releases/download/v1/office.zip",
+        "description": "Microsoft Office Suite v2024 LTSC"
+      }
+    ]
   }
 }

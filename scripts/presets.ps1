@@ -24,20 +24,6 @@ function Get-AppJson {
     }
 }
 
-function Get-EnvJson {
-    param (
-        [Parameter(Mandatory = $true)]
-        [string]$Path
-    )
-
-    if (Test-Path -Path $Path) {
-        return Get-Content -Path $Path -Encoding UTF8 -Raw | ConvertFrom-Json -AsHashtable
-    } else {
-        Write-Error "No se encontró el archivo: $Path"
-        return $null
-    }
-}
-
 <#
     .SYNOPSIS
     establece la configuracion seleccionada
