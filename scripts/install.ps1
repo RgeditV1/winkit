@@ -14,6 +14,7 @@ function Set-Install{
                 Name = $app.name
             }
             if ($app.ContainsKey('path')) { $params['Path'] = $app.path }
+            elseif($app.ContainsKey('command')){ $params['command'] = $app.command}
 
             Get-Program @params
         }
@@ -30,7 +31,8 @@ function Get-Program{
         [string]$Id,
         [string]$Name,
         [parameter(Mandatory=$false)]
-        [string]$Path
+        [string]$Path,
+        [string]$Command
     )
 
     Write-Host "Comprobando si [$($Name)] esta instalado..." -ForegroundColor Cyan
@@ -51,6 +53,17 @@ function Get-Program{
         Write-Host "Comprobando Variables de Entorno [PATH] para '$Name'..." -ForegroundColor Cyan
         Set-Path -PathToAdd $Path
     }
+    elseif (-not [string]::IsNullOrWhiteSpace($Command)) {
+            $ExpandedCommand = $ExecutionContext.InvokeCommand.ExpandString($Command)
+
+            if (Test-Path $ExpandedCommand) {
+                Write-Host "Ejecutando '$ExpandedCommand' " -ForegroundColor Cyan
+                Start-Process -FilePath $ExpandedCommand -Wait
+                Write-Host "Ejecución completada." -ForegroundColor Green
+            } else {
+                Write-Host "No se encontró el ejecutable en la ruta: $ExpandedCommand" -ForegroundColor Red
+            }
+        }
 }
 
 <#

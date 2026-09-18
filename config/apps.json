@@ -2,6 +2,12 @@
   "standard": {
     "winget": [
       {
+        "name": "Microsoft Office Tool Installer By @YerongAI",
+        "id": "Yerong.OfficeToolPlus",
+        "command": "$env:USERPROFILE\\AppData\\Local\\Microsoft\\WinGet\\Links\\OfficeToolPlus.exe",
+        "description": "A tool for install Microsoft Office"
+      },
+      {
         "name": "7-Zip",
         "id": "7zip.7zip",
         "description": "7-Zip is a free and open-source file archiver with a high compression ratio."
@@ -88,7 +94,7 @@
   "extras": {
     "github": [
       {
-        "name": "Office Pro Plus 2024 LTSC",
+        "name": "Office Pro Plus 2024 LTSC By @RgediV1",
         "installer": "instalar.bat",
         "url": "https://github.com/RgeditV1/Office-Pro-Plus-2024-LTSC/releases/download/v1/office.zip",
         "description": "Microsoft Office Suite v2024 LTSC"

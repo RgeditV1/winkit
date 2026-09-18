@@ -1,4 +1,4 @@
-$script:version = 2026.09.18
+$script:version = 2026.09
 
 # Variables
 $script:data = $null
@@ -178,7 +178,7 @@ function Get-AppList {
     while ($true) {
         $options = @()
 
-        if ($JsonData -is [hashtable] -or $JsonData -is [System.Collections.Specialized.IOrderedDictionary]) {
+        if ($JsonData -is [hashtable]) {
             foreach ($key in $JsonData.Keys) {
                 if ($key -ne 'extras') { $options += $key }
             }
@@ -295,7 +295,7 @@ R::::::R     R::::::R    GGGGGGGGGGGGG EEEEEEEEEEEEEEEEEEEEEEDDDDDDDDDDDDDDD    
         $menuSelection = Select-Menu -Options $mainOptions -Title "MENÚ PRINCIPAL"
 
         switch ($menuSelection) {
-            "Ver Lista de Apps" {
+            "Lista de Apps" {
                 Get-AppList -JsonData $script:data
             }
             "Instalar Preset: developer" {
